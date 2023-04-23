@@ -1941,12 +1941,6 @@ bool ApiSystem::emuKill()
 	return executeScript("batocera-es-swissknife --emukill");
 }
 
-void ApiSystem::suspend()
-{
-	LOG(LogDebug) << "ApiSystem::suspend";
-	executeScript("/usr/sbin/pm-suspend");
-}
-
 void ApiSystem::replugControllers_sindenguns() {
   LOG(LogDebug) << "ApiSystem::replugControllers_sindenguns";
   executeScript("/usr/bin/virtual-sindenlightgun-remap");
