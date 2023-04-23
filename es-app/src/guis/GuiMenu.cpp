@@ -3681,26 +3681,17 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			_("NO"), nullptr));
 	}, "iconRestart");
 
-	if (ApiSystem::getInstance()->isScriptingSupported(ApiSystem::SUSPEND))
-	{
-		s->addEntry(_("SUSPEND SYSTEM"), false, [window, s] {
-			window->pushGui(new GuiMsgBox(window, _("REALLY SUSPEND ?"),
-				_("YES"), [s] { s->close(); ApiSystem::getInstance()->suspend(); },
-				_("NO"), nullptr));
-		}, "iconFastShutdown");
-	}
-
 	s->addEntry(_("SHUTDOWN SYSTEM"), false, [window] {
 		window->pushGui(new GuiMsgBox(window, _("REALLY SHUTDOWN?"), 
 			_("YES"), [] { quitES(QuitMode::SHUTDOWN); }, 
 			_("NO"), nullptr));
 	}, "iconShutdown");
 
-	s->addWithDescription(_("FAST SHUTDOWN SYSTEM"), _("Shutdown without saving metadata."), nullptr, [window] {
-		window->pushGui(new GuiMsgBox(window, _("REALLY SHUTDOWN WITHOUT SAVING METADATA?"), 
-			_("YES"), [] { quitES(QuitMode::FAST_SHUTDOWN); },
+	s->addEntry(_("QUIT EMULATIONSTATION"), false, [window] {
+		window->pushGui(new GuiMsgBox(window, _("REALLY QUIT?"), 
+			_("YES"), [] { quitES(QuitMode::QUIT); }, 
 			_("NO"), nullptr));
-	}, "iconFastShutdown");
+	}, "iconQuit");
 
 #ifdef WIN32
 	if (Settings::getInstance()->getBool("ShowExit"))
