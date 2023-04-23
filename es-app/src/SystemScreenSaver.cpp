@@ -78,16 +78,7 @@ void SystemScreenSaver::startScreenSaver()
 
 	if (screensaver_behavior == "suspend")
 	{
-		if (ApiSystem::getInstance()->isScriptingSupported(ApiSystem::SUSPEND))
-		{
-			ApiSystem::getInstance()->suspend();
-
-			mLoadingNext = false;
-			mWindow->cancelScreenSaver();
-			return;
-		}
-		else
-			screensaver_behavior = "black";
+		screensaver_behavior = "black";
 	}
 
 	if (!loadingNext && Settings::getInstance()->getBool("StopMusicOnScreenSaver")) //(Settings::getInstance()->getBool("VideoAudio") && !Settings::getInstance()->getBool("ScreenSaverVideoMute")))
